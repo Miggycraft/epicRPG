@@ -1,5 +1,5 @@
 package backpack;
 
-public class Potions {
+public class Potions extends Items{
 
 }

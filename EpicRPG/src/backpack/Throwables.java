@@ -1,5 +1,5 @@
 package backpack;
 
-public class Throwables {
+public class Throwables extends Items{
 
 }

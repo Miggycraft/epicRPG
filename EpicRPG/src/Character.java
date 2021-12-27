@@ -1,6 +1,7 @@
 
 public class Character {
 	protected String name;
+	protected int level; // initial level at 1
 	protected int health; // initial health at 20
 	protected int currHealth; // current health
 	protected int mana; // initial mana at 10
@@ -9,15 +10,14 @@ public class Character {
 	protected int damage;
 	protected int block;
 	protected int luck; // maximum of 100 only.
-	protected int stealth; // dapat maincharacter lang to
-	protected int stealhBar;
 	
 	Character(){
-		this("Default",20, 10, 0, 2, 0, 50, 50);
+		this("Default",1, 20, 10, 0, 2, 0, 50, 50);
 	}
 	
-	Character(String name, int health, int mana, int speed, int damage, int block, int luck, int stealth){
+	Character(String name, int level, int health, int mana, int speed, int damage, int block, int luck, int stealth){
 		this.name = name;
+		this.level = level;
 		this.health = health;
 		this.mana = mana;
 		this.speed = speed;
@@ -32,6 +32,10 @@ public class Character {
 	
 	String getName() {
 		return name;
+	}
+	
+	int getLevel() {
+		return level;
 	}
 	
 	int getHealth() {
@@ -73,6 +77,10 @@ public class Character {
 		this.name = name;
 	}
 	
+	void setLevel(int level) {
+		this.level = level;
+	}
+	
 	void setHealth(int health) {
 		this.health = health;
 	}
@@ -112,6 +120,7 @@ public class Character {
 	String getInfo() {
 		String info = 
 				"= = = I N F O = = =\r\n"
+				+ "Level: " + level + "\r\n"
 				+ "Name: " + name + "\r\n"
 				+ "Health: " + health + "\\" + currHealth + "\r\n"
 				+ "Mana:" + mana + "\\" + currMana + "\r\n"
@@ -125,9 +134,9 @@ public class Character {
 	}
 	
 	int attack(Character c) {
-		int damaged = (c.getBlock() - getDamage());
+		int damaged = c.getcurrHealth() - (c.getBlock() - getDamage());
+		c.setCurrHealth(damaged);
 		
-		
-		return 
+		return damaged; // if 0 or lower ang value = death
 	}
 }
